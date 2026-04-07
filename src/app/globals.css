@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ink: #0b1220;
+  --color-ink-soft: #334155;
+  --color-bg: #f8fafc;
+  --color-line: #e2e8f0;
+  --color-brand: #0b2545;       /* deep navy */
+  --color-brand-2: #13315c;
+  --color-accent: #f59e0b;      /* amber */
+}
+
+html, body { height: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", "Meiryo", "Noto Sans JP", sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "palt";
+  letter-spacing: 0.01em;
+}
+
+/* ---------- typography ---------- */
+.h-display {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.h-section {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- layout ---------- */
+.container-narrow { @apply max-w-5xl mx-auto px-6; }
+.container-wide   { @apply max-w-6xl mx-auto px-6; }
+
+/* ---------- gradients & decoration ---------- */
+.hero-bg {
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(245,158,11,0.10), transparent 60%),
+    radial-gradient(900px 500px at 0% 10%, rgba(19,49,92,0.08), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+}
+.dot-grid {
+  background-image: radial-gradient(rgba(15,23,42,0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* ---------- components ---------- */
+@layer components {
+  .label { @apply block text-xs font-semibold text-slate-600 mb-1.5 tracking-wide; }
+  .input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm
+           text-slate-900 placeholder-slate-400 shadow-sm
+           focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900/10;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold
+           transition-all duration-150 shadow-sm;
+  }
+  .btn-primary {
+    @apply btn text-white;
+    background: linear-gradient(180deg, #13315c 0%, #0b2545 100%);
+  }
+  .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn-secondary {
+    @apply btn bg-white border border-slate-300 text-slate-800 hover:bg-slate-50;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent border border-transparent text-slate-700 hover:bg-slate-100 shadow-none;
+  }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+
+  .card {
+    @apply bg-white rounded-2xl border border-slate-200 p-6;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -12px rgba(15,23,42,0.08);
+  }
+  .card-flat { @apply bg-white rounded-2xl border border-slate-200 p-6; }
+
+  .badge { @apply inline-flex items-center text-xs font-medium px-2 py-0.5 rounded-full; }
+  .badge-gray   { @apply badge bg-slate-100 text-slate-700; }
+  .badge-blue   { @apply badge bg-blue-50 text-blue-700 ring-1 ring-blue-200; }
+  .badge-green  { @apply badge bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200; }
+  .badge-yellow { @apply badge bg-amber-50 text-amber-800 ring-1 ring-amber-200; }
+  .badge-navy   { @apply badge bg-[#0b2545] text-white; }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] uppercase text-slate-500;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block w-6 h-px bg-slate-400;
+  }
+
+  .step-num {
+    @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#0b2545] text-white text-sm font-bold;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1 text-sm font-semibold text-[#0b2545] hover:underline;
+  }
+}
+
+/* ---------- header navigation ---------- */
+.nav-link {
+  @apply text-sm text-slate-600 hover:text-slate-900 transition-colors;
+}
+
+/* ---------- prose for AI markdown preview ---------- */
+.prose-mic h2 { @apply text-base font-bold mt-4 mb-2; }
+.prose-mic ul { @apply list-disc pl-5 text-sm; }
