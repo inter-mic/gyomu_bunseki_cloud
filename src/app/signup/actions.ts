@@ -2,6 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { db } from '@/lib/db';
+import { sendSignupEmails } from '@/lib/email';
 
 export async function signupAction(formData: FormData) {
   const supabase = db();
@@ -34,6 +35,14 @@ export async function signupAction(formData: FormData) {
     .select()
     .single();
   if (e2) throw e2;
+
+  await sendSignupEmails({
+    company,
+    contactName: String(formData.get('contact_name') || ''),
+    contactEmail: String(formData.get('contact_email') || ''),
+    theme: String(formData.get('theme') || ''),
+    token: project.customer_token,
+  });
 
   redirect(`/c/${project.customer_token}?welcome=1`);
 }
