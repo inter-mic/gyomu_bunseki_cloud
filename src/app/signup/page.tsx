@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { signupAction } from './actions';
 
+export const dynamic = 'force-dynamic';
+
 export default function SignupPage() {
   return (
     <main className="min-h-screen">
